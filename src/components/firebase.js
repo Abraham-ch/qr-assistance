@@ -4,13 +4,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBTcsUrIA-X4bEjIEZDH4CG7AcIKN2DVsA",
-  authDomain: "academia-galois.firebaseapp.com",
-  projectId: "academia-galois",
-  storageBucket: "academia-galois.firebasestorage.app",
-  messagingSenderId: "398311904961",
-  appId: "1:398311904961:web:5b23e8dd56df054e0f6640",
-  measurementId: "G-25WBF35MMV"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
