@@ -1,27 +1,37 @@
+import { useEffect} from 'react';
 import { Html5QrcodeScanner, Html5QrcodeScanType } from "html5-qrcode";
 
 const QrScanner = () => {
-  function onScanSuccess(decodedText, decodedResult) {
-    // handle the scanned code as you like, for example:
-    console.log(`Code matched = ${decodedText}`, decodedResult);
-  }
 
-  let config = {
-    fps: 10,
-    qrbox: {width: 100, height: 100},
-    rememberLastUsedCamera: true,
-    // Only support camera scan type.
-    supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
-  };
+  useEffect(() => {
+    function onScanSuccess(decodedText, decodedResult) {
+      console.log(`Code matched = ${decodedText}`, decodedResult);
+    }
 
-  let html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", config, /* verbose= */ false);
-  html5QrcodeScanner.render(onScanSuccess);
+    const config = {
+      fps: 10,
+      qrbox: {width: 100, height: 100},
+      rememberLastUsedCamera: true,
+      supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
+    };
+
+    const html5QrcodeScanner = new Html5QrcodeScanner(
+      "reader", config, /* verbose= */ false);
+    
+    html5QrcodeScanner.render(onScanSuccess);
+
+    // Cleanup function
+    return () => {
+      html5QrcodeScanner.clear();
+    };
+  }, []);
 
   return (
-    <div>
-      <div id="reader" width="600px"></div>
-    </div>
+    <>
+      <section className='flex w-full justify-center items-center h-full'>
+        <div id="reader" style={{width: '600px'}}></div>
+      </section>
+    </>
   );
 };
 

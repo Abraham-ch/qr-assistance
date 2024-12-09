@@ -1,19 +1,47 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 const Overview = () => {
-  const students = [
-    { id: "A001", alumno: "Juan Pérez", estado: "Matriculado", asistencia: 1 },
-    { id: "A002", alumno: "María López", estado: "Pendiente", asistencia: 0 },
-    { id: "A003", alumno: "Carlos Sánchez", estado: "Matriculado", asistencia: 1 },
-    { id: "A004", alumno: "Ana Gómez", estado: "Pendiente", asistencia: 0 },
-    { id: "A005", alumno: "Luis Fernández", estado: "Matriculado", asistencia: 1 },
-    { id: "A006", alumno: "Sofía Ramírez", estado: "Pendiente", asistencia: 0 },
-    { id: "A007", alumno: "Diego Torres", estado: "Matriculado", asistencia: 1 },
-  ];
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch data when the component mounts
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/estudiantes`)
+      .then(response => {
+        // Ajustamos la estructura de los datos para el uso en la tabla
+        const formattedStudents = response.data.map(student => ({
+          id: student.id_estudiante,
+          alumno: `${student.nombre} ${student.apellido}`,
+          estado: student.grado_nivel,
+          asistencia: 0, // Asignar un valor por defecto, puedes modificar esto según tus necesidades
+        }));
+        setStudents(formattedStudents);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Error al obtener los estudiantes:', err);
+        setError('Error al cargar los datos de los estudiantes.');
+        setLoading(false);
+      });
+  }, []);
+
   const totalAsistidos = students.filter((student) => student.asistencia === 1).length;
+
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <div className="flex flex-col max-w-5xl mx-auto">
       <h2 className="self-start text-xl font-semibold pb-4">Dashboard</h2>
       <div className="overflow-x-auto">
-        <table className="w-full  divide-y divide-gray-300 bg-gray-100 text-sm text-gray-900">
+        <table className="w-full divide-y divide-gray-300 bg-gray-100 text-sm text-gray-900">
           <caption className="py-4 text-gray-800 text-start pb-4">
             Lista de alumnos registrados.
           </caption>

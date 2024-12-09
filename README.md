@@ -5,16 +5,19 @@ Un sistema de asistencia basado en QR utilizando Firebase y React con Vite.
 ## Instalación y configuración
 
 ### 1. Clonar el repositorio
+
 Clona el repositorio y navega al directorio del proyecto:
+
 ```bash
 git clone https://github.com/Abraham-ch/qr-assistance.git
 cd qr-assistance
 ```
 
 ### 2. Instalar dependencias
+
 Asegúrate de tener instalado pnpm, npm o yarn. Usa el siguiente comando para instalar las dependencias:
 
-```bash 
+```bash
 pnpm install
 ```
 
@@ -44,7 +47,7 @@ pnpm dev
 
 Para compilar la aplicación para producción, utiliza el siguiente comando:
 
-```bash 
+```bash
 pnpm build
 ```
 
