@@ -6,14 +6,15 @@ import {
   Route,
 } from "react-router-dom";
 
-import Login from "./components/login";
-import Register from "./components/register";
-import Dashboard from "./components/dashboard";
-import Landing from "./components/landing";
-import Profile from "./components/dashboard/profile";
-import Settings from "./components/dashboard/settings";
-import Overview from "./components/dashboard/overview";
-import QrScanner from "./components/dashboard/qrScanner";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import Dashboard from "./pages/dashboard";
+import Landing from "./pages/landing";
+import Profile from "./pages/dashboard/profile";
+import Report from "./pages/dashboard/report";
+import Users from "./pages/dashboard/users";
+import Overview from "./pages/dashboard/overview";
+import QrScanner from "./pages/dashboard/qrScanner";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -49,8 +50,8 @@ function App() {
                 element={<Profile />}
               />
               <Route
-                path="settings"
-                element={<Settings />}
+                path="report"
+                element={<Report />}
               />
               <Route
                 path="Overview"
@@ -59,6 +60,10 @@ function App() {
               <Route
                 path="qr-reader"
                 element={<QrScanner />}
+              />
+              <Route
+                path="users"
+                element={<Users />}
               />
               </Route>
             </Routes>
