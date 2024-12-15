@@ -9,12 +9,15 @@ export const GetUsers = () => {
   const fetchStudents = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/estudiantes`);
-      
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/students`);
+
       const formattedStudents = response.data.map(student => ({
         id: student.id_estudiante,
-        alumno: `${student.nombre} ${student.apellido}`,
+        nombre: student.nombre,
+        apellido: student.apellido,
+        dni: student.dni,
         matricula: student.matricula,
+        nivel: student.nivel,
         grado: student.grado,
         estado: student.estado,
       }));
