@@ -1,11 +1,14 @@
 import { NavLink, Outlet, Link } from "react-router-dom";
+import Logo from "../assets/img/dashboardlogo.png"
 
 const Dashboard = () => {
   return (
     <div className="flex min-h-screen">
-      <aside className="w-64 bg-gray-800 text-white p-4">
-        <Link className="text-2xl font-semibold" to="/">Logo</Link>
-        <nav className="space-y-2 pt-12">
+      <aside className="w-64 bg-blue-950 text-white p-4">
+        <Link className="h-0" to="/">
+          <img className="w-full pl-4 pr-10 mt-4" src={Logo} alt="Dashboard Galoiss Logo" />
+        </Link>
+        <nav className="space-y-2 pt-8">
           <div className="text-start text-sm font-semibold py-2 px-4 text-neutral-200">
             <p>General</p>
           </div>
@@ -76,8 +79,6 @@ const Dashboard = () => {
           </NavLink>
         </nav>
       </aside>
-
-      {/* Main Content */}
       <main className="flex-1 p-6 bg-gray-100">
         <Outlet />
       </main>

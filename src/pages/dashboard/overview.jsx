@@ -10,7 +10,7 @@ const Overview = () => {
   const totalAsistidos = students.filter((student) => student.asistencia === 1).length;
   return (
     <div className="flex flex-col max-w-5xl mx-auto">
-      <h2 className="self-start text-xl font-semibold pb-4">Dashboard</h2>
+      <h2 className="self-start text-2xl font-bold pb-4">Dashboard</h2>
       <div className="overflow-x-auto">
         <table className="w-full divide-y divide-gray-300 bg-gray-100 text-sm text-gray-900 border border-gray-300">
           <caption className="py-3 pb-3 text-gray-800 text-start text-sm pl-4">
@@ -26,7 +26,7 @@ const Overview = () => {
             <tr>
               <th className="py-3 px-4 w-[180px]">ID</th>
               <th className="py-3 px-4">Alumno</th>
-              <th className="py-3 px-4">Matricula</th>
+              <th className="py-3 px-4">Nivel</th>
               <th className="py-3 px-4">Grado</th>
               <th className="py-3 px-4 pr-6 text-right">Asistencia</th>
             </tr>
@@ -35,8 +35,8 @@ const Overview = () => {
             {students.map((student) => (
               <tr key={student.id} className="text-left">
                 <td className="py-3 px-4 font-medium">{student.id}</td>
-                <td className="py-3 px-4">{student.alumno}</td>
-                <td className="py-3 px-4">{student.matricula}</td>
+                <td className="py-3 px-4">{student.nombre} {student.apellido}</td>
+                <td className="py-3 px-4">{student.nivel}</td>
                 <td className="py-3 px-4">{student.grado}</td>
                 <td className="py-3 pr-6 px-4 text-right">{student.estado === "Activo" || student.estado === "activo" ? "Presente" : "Ausente"}</td>
               </tr>

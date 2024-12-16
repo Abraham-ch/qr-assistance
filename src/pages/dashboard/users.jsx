@@ -3,8 +3,8 @@ import { AddUsers, EnrollUsers } from '../../components/Users/addUsers';
 
 function Users() {
   // Hooks de los componentes para crear estudiantes y matricular
-  const { createStudent, loading: studentLoading, error: studentError, success: studentSuccess, resetStatus: resetStudentStatus } = AddUsers();
-  const { createEnrollment, loading: enrollmentLoading, error: enrollmentError, success: enrollmentSuccess, resetStatus: resetEnrollmentStatus } = EnrollUsers();
+  const { createStudent, loading: studentLoading, error: studentError, success: studentSuccess } = AddUsers();
+  const { createEnrollment, loading: enrollmentLoading, error: enrollmentError, success: enrollmentSuccess } = EnrollUsers();
 
   // Estado para el primer formulario de estudiantes
   const [studentData, setStudentData] = useState({
@@ -82,15 +82,13 @@ function Users() {
   };
 
   return (
-    <div className="container mx-auto p-6 space-y-8">
+    <div className="container max-w-5xl mx-auto flex flex-col justify-center gap-y-8 h-full xl:items-start items-center">
       {/* Formulario de Estudiantes */}
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Registro de Estudiante</h2>
-        {studentError && <div className="text-red-500 mb-4">{studentError}</div>}
-        {studentSuccess && <div className="text-green-500 mb-4">Estudiante creado exitosamente</div>}
-        
+      <div className="rounded-lg px-8 py-6 max-w-4xl w-full bg-white">
+        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-start">Registro de Estudiante</h2>
+        <p className='text-start pb-4 md:text-base text-sm'>Ingrese los datos del estudiante para registrarlo en el sistema.</p>
         <form onSubmit={handleStudentSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <input
               type="text"
               name="dni"
@@ -143,25 +141,27 @@ function Users() {
                 <option key={grado} value={grado}>{grado}</option>
               ))}
             </select>
-          </div>
-          <button 
+
+            <button 
             type="submit" 
             disabled={studentLoading}
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out disabled:opacity-50"
+            className="w-full block self-start bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out disabled:opacity-50"
           >
             {studentLoading ? 'Creando...' : 'Crear Estudiante'}
           </button>
+          </div>  
         </form>
+        {studentError && <div className="text-red-500 mb-4">{studentError}</div>}
+        {studentSuccess && <div className="text-green-500 mb-4">Estudiante creado exitosamente</div>}
       </div>
 
       {/* Formulario de Matrícula */}
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Registro de Matrícula</h2>
-        {enrollmentError && <div className="text-red-500 mb-4">{enrollmentError}</div>}
-        {enrollmentSuccess && <div className="text-green-500 mb-4">Matrícula creada exitosamente</div>}
+      <div className="rounded-lg px-8 py-6 max-w-4xl w-full bg-white">
+        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-start">Registro de Matrícula</h2>
+        <p className='text-start pb-4 md:text-base text-sm'>Ingrese los datos de la matrícula para registrarla en el sistema.</p>
         
         <form onSubmit={handleEnrollmentSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <input
               type="text"
               name="dni"
@@ -194,15 +194,18 @@ function Users() {
               <option value="Regular">Regular</option>
               <option value="Extraordinario">Extraordinario</option>
             </select>
-          </div>
-          <button 
+
+            <button 
             type="submit" 
             disabled={enrollmentLoading}
             className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition duration-300 ease-in-out disabled:opacity-50"
           >
             {enrollmentLoading ? 'Matriculando...' : 'Registrar Matrícula'}
           </button>
+          </div>
         </form>
+        {enrollmentError && <div className="text-red-500 mb-4">{enrollmentError}</div>}
+        {enrollmentSuccess && <div className="text-green-500 mb-4">Matrícula creada exitosamente</div>}
       </div>
     </div>
   );
