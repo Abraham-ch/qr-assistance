@@ -36,7 +36,6 @@ function Login() {
         </div>
       <div className="w-full max-w-md space-y-8 bg-white rounded-lg py-8 px-12 h-full">
         <form onSubmit={handleSubmit}>
-
           <img src={Logo} alt="Logo" className="w-24 place-self-end top-0 pb-16" />
           <h3 className="text-2xl text-start font-bold pb-6">Login</h3>
           <div className="mb-3 flex flex-col">

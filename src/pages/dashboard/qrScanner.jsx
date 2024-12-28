@@ -1,30 +1,50 @@
-import { useEffect} from 'react';
 import { Html5QrcodeScanner, Html5QrcodeScanType } from "html5-qrcode";
 
 const QrScanner = () => {
 
-  useEffect(() => {
-    function onScanSuccess(decodedText, decodedResult) {
-      console.log(`Code matched = ${decodedText}`, decodedResult);
+  function domReady(fn) {
+    if (document.readyState === 'complete' || document.readyState === "interactive") {
+      setTimeout(fn, 1);
+    } else {
+      document.addEventListener('DOMContentLoaded', fn);
     }
+  }
 
-    const config = {
-      fps: 10,
-      qrbox: {width: 100, height: 100},
-      rememberLastUsedCamera: true,
-      supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
-    };
+  domReady(function() {
+    var myqr = document.getElementById("reader");
+    var lastResult,countResults = 0;
 
-    const html5QrcodeScanner = new Html5QrcodeScanner(
-      "reader", config, /* verbose= */ false);
-    
-    html5QrcodeScanner.render(onScanSuccess);
+    function onScanSuccess(decodedText, decodedResult) {
+      if(decodedText  !== lastResult){
+        countResults++;
+        lastResult = decodedText;
+        console.log(`Code matched = ${decodedText}`, decodedResult);
+        myqr.innerHTML = `<h1>Resultado ${countResults}: ${decodedText}</h1>`;
+      }
+    }
+    var htmlscanner = new Html5QrcodeScanner(
+      "reader",
+      {
+        fps: 10,
+        qrbox: {width: 250, height: 250},
+        rememberLastUsedCamera: true,
+        //showFlipButton: true,
+        //showSwitchCameraButton: true,
+        //showLocation: true,
+        //showPlaySoundButton: true,
+        //showQrCodeFrame: true,
+        //showQrCodeFrameBorder: true,
+        //showScanLine: true,
+        //showStatusText: true,
+        //statusText: "Buscando...",
+        //qrCodeSuccessCallback: onScanSuccess,
+        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
+      }
+    );
 
-    // Cleanup function
-    return () => {
-      html5QrcodeScanner.clear();
-    };
-  }, []);
+    htmlscanner.render(onScanSuccess);
+
+  });
 
   return (
     <>
