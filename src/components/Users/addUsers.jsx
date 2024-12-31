@@ -21,7 +21,7 @@ export const AddUsers = () => {
       }
 
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/students`, 
+        `${import.meta.env.VITE_BACKEND_URL}/api/estudiantes`, 
         studentData
       );
 
@@ -71,7 +71,7 @@ export const EnrollUsers = () => {
       }
 
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/enrollments`, 
+        `${import.meta.env.VITE_BACKEND_URL}/api/matriculas`, 
         enrollmentData
       );
 

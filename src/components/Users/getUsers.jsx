@@ -9,24 +9,22 @@ export const GetUsers = () => {
   const fetchStudents = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/students`);
+      setError(null);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/estudiantes`);
 
-      const formattedStudents = response.data.map(student => ({
+      const formattedStudents = response.data.data.map(student => ({
         id: student.id_estudiante,
         nombre: student.nombre,
         apellido: student.apellido,
         dni: student.dni,
-        matricula: student.matricula,
         nivel: student.nivel,
         grado: student.grado,
-        estado: student.estado,
       }));
 
       setStudents(formattedStudents);
       setLoading(false);
     } catch (err) {
       console.error('Error al obtener los estudiantes:', err);
-      setError('Error al cargar los datos de los estudiantes.');
       setLoading(false);
     }
   };
@@ -46,9 +44,9 @@ export const GetEnrollments = () => {
   const fetchEnrollments = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/enrollments`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/matriculas`);
 
-      const formattedEnrollments = response.data.map(enrollment => ({
+      const formattedEnrollments = response.data.data.map(enrollment => ({
         id: enrollment.id_estudiante,
         ciclo: enrollment.ciclo,
         periodo: enrollment.periodo,
