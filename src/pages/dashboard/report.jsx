@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GetUsers } from "../../components/Users/getUsers";
+import { GetUsers } from "components/Users/getUsers";
 
 const Report = () => {
   const { students, loading, error, refetch } = GetUsers();

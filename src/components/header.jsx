@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom"
-import Logo from "../assets/img/dashboardlogo.png"
+import Logo from "assets/img/dashboardlogo.png"
 
 const Header = () => {
   return (
-    <header className="bg-blue-950 text-white shadow">
-      <div className="w-full px-8 flex justify-between items-center text-2xl font-semibold py-5">
+    <header className="bg-blue-950 text-white shadow items-center w-full px-8 flex justify-between text-2xl font-semibold h-16">
         <Link to="/" className="flex items-center justify-between">
-          <img src={Logo} alt="Logo" className="h-12" />
+          <img src={Logo} alt="Logo" className="h-10" />
         </Link>
-        <div>
+        <div className="flex items-center">
           <Link to="/login" className="text-lg font-semibold leading-6">
             Login
           </Link>
@@ -16,7 +15,6 @@ const Header = () => {
             Register
           </Link>
         </div>
-      </div>
     </header>
   )
 };

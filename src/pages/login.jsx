@@ -1,10 +1,10 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { auth } from "../components/firebase";
+import { auth } from "components/firebase";
 import { toast } from "react-toastify";
-import SignInwithGoogle from "../components/signInWithGoogle";
+import SignInwithGoogle from "components/signInWithGoogle";
 import { Link } from "react-router-dom";
-import Logo from "../assets/img/dashboardlogo.png"
+import Logo from "assets/img/dashboardlogo.png"
 
 function Login() {
   const [email, setEmail] = useState("");

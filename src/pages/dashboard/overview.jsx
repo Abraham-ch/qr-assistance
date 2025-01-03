@@ -1,5 +1,5 @@
-import { GetUsers } from '../../components/Users/getUsers';
-import CardsGrid from '../../components/Students/cardsGrid';
+import { GetUsers } from 'components/Users/getUsers';
+import CardsGrid from 'components/Students/cardsGrid';
 
 const Overview = () => {
   const { students, loading, error, refetch } = GetUsers();

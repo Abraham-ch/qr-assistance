@@ -1,10 +1,10 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { auth, db } from "../components/firebase";
+import { auth, db } from "components/firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import Logo from "../assets/img/dashboardlogo.png"
+import Logo from "assets/img/dashboardlogo.png"
 
 function Register() {
   const [email, setEmail] = useState("");

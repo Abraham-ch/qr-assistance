@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AddUsers, EnrollUsers } from '../../components/Users/addUsers';
+import { AddUsers, EnrollUsers } from 'components/Users/addUsers';
 
 function Users() {
   // Hooks de los componentes para crear estudiantes y matricular

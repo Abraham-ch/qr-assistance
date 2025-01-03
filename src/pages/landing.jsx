@@ -1,9 +1,13 @@
-import Header from "../components/header";
+import Header from "components/header";
+import { MainSection } from "./home/mainSection";
+import { Benefits } from "./home/benefits";
+
 const Landing = () => {
   return (
     <>
     <Header />
-    <h1>Landing Page</h1>
+    <MainSection />
+    <Benefits />
     </>
   );
 

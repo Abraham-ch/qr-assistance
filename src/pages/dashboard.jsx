@@ -1,5 +1,5 @@
 import { NavLink, Outlet, Link } from "react-router-dom";
-import Logo from "../assets/img/dashboardlogo.png"
+import Logo from "assets/img/dashboardlogo.png"
 
 const Dashboard = () => {
   return (
