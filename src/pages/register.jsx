@@ -95,7 +95,7 @@ function Register() {
           </div>
           <div className="flex flex-col justify-center items-center">
             <button type="submit" className="px-12 py-3 border rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-500 transition-colors duration-300">
-              Ingresar
+              Registrar
             </button>
           </div>
         </form>
