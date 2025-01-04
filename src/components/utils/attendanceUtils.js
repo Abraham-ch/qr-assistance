@@ -1,5 +1,5 @@
 export const prepareAttendanceData = (idEstudiante) => {
   return {
-    id_estudiante: idEstudiante,
+    qr_content: idEstudiante,
   };
 };

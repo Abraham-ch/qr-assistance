@@ -1,10 +1,39 @@
 import { NavLink, Outlet, Link } from "react-router-dom";
 import Logo from "assets/img/dashboardlogo.png"
+import { useState } from "react";
 
 const Dashboard = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="flex min-h-screen">
-      <aside className="w-64 bg-blue-950 text-white p-4">
+      <button 
+        onClick={toggleSidebar}
+        className="fixed top-4 right-4 z-50 p-2 rounded-lg bg-blue-950 text-white md:hidden"
+      >
+        {isOpen ? (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 6L6 18"></path>
+            <path d="M6 6l12 12"></path>
+          </svg>
+        ) : (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        )}
+      </button>
+      <aside className={`
+        fixed md:static w-64 bg-blue-950 text-white p-4 min-h-screen
+        transition-transform duration-300 ease-in-out
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+        md:translate-x-0 z-40
+      `}>
         <Link className="h-0" to="/">
           <img className="w-full pl-4 pr-10 mt-4" src={Logo} alt="Dashboard Galoiss Logo" />
         </Link>

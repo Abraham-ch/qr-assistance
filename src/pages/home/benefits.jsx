@@ -9,8 +9,8 @@ export const Benefits = () => {
   return (
     <section className="flex flex-col gap-y-8 items-center bg-gray-100 py-16">
       <div className="max-w-6xl">
-        <h2 className="text-3xl font-bold pb-12">¿Quienes se benefician de nuestra academia?</h2>
-        <div className="flex flex-row gap-x-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold pb-12">¿Quienes se benefician de nuestra academia?</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-2 sm:gap-x-6">
           <BenefitCard title="Estudiantes de colegio" description="Refuerza tus conocimientos y prepárate para los exámenes de ingreso a la universidad con clases dinámicas y especializadas." icon={book} alt="Book svg" cn={"bg-blue-500"} />
 
           <BenefitCard title="Estudiantes independientes" description="Acceso a tutorías personalizadas para reforzar áreas específicas y alcanzar tus metas académicas." icon={presentation} alt="Presentation svg" cn={"bg-yellow-500"} />

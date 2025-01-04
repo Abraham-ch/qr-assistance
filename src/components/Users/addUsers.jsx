@@ -118,7 +118,7 @@ const useAttendance = () => {
       setError(null);
       setSuccess(false);
 
-      const requiredFields = ['id_estudiante'];
+      const requiredFields = ['qr_content'];
       const missingFields = requiredFields.filter(field => !attendanceData[field]);
 
       if (missingFields.length > 0) {
@@ -126,7 +126,7 @@ const useAttendance = () => {
       }
 
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/asistencias`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/asistencias/qr/`,
         attendanceData
       );
 

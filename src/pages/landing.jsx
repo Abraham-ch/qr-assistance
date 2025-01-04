@@ -1,6 +1,8 @@
 import Header from "components/header";
 import { MainSection } from "./home/mainSection";
 import { Benefits } from "./home/benefits";
+import { WeOffer } from "./home/weOffer";
+import { Footer } from "src/components/footer";
 
 const Landing = () => {
   return (
@@ -8,6 +10,8 @@ const Landing = () => {
     <Header />
     <MainSection />
     <Benefits />
+    <WeOffer />
+    <Footer />
     </>
   );
 
