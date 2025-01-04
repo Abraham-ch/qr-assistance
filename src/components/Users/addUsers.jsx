@@ -167,4 +167,4 @@ const useAttendance = () => {
   };
 };
 
-export default { useAttendance };
+export default useAttendance;
