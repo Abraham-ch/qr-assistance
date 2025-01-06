@@ -15,12 +15,12 @@ function SignInwithGoogle() {
           email: user.email,
           firstName: user.displayName,
           photo: user.photoURL,
-          lastName: "",
+          phone: user.phoneNumber,
         });
         toast.success("User logged in Successfully", {
           position: "top-center",
         });
-        window.location.href = "dashboard/profile";
+        window.location.href = "dashboard/overview";
       }
     });
   }

@@ -59,9 +59,9 @@ const QrScanner = () => {
 
   return (
     <section className='flex w-full justify-center items-center h-full flex-col'>
-      <div id="reader" style={{width: '600px'}}></div>
+      <div id="reader" style={{maxWidthwidth: '600px', width: '80%'}}></div>
       {scanStatus && (
-        <div className="mt-4 text-center p-4 bg-gray-100 rounded">
+        <div className="mt-4 text-center p-4 bg-gray-100 rounded w-full">
           {scanStatus}
         </div>
       )}

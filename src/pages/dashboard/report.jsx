@@ -10,8 +10,8 @@ const Report = () => {
   );
 
   return (
-    <div className="p-6 max-w-5xl mx-auto rounded-lg">
-      <h1 className="text-2xl font-bold text-left mb-4">Búsqueda de Estudiantes</h1>
+    <div className="p-0 py-3  sm:p-6 max-w-5xl mx-auto rounded-lg">
+      <h1 className="text-lg sm:text-2xl font-bold text-left mb-4">Búsqueda de Estudiantes</h1>
 
       {/* Sección de búsqueda */}
       <div className="flex gap-4 mb-6">
@@ -41,8 +41,8 @@ const Report = () => {
           <tr>
             <th className="py-3 px-4">Nombre</th>
             <th className="py-3 px-4">DNI</th>
-            <th className="py-3 px-4">Nivel</th>
-            <th className="py-3 px-4">Grado</th>
+            <th className="py-3 px-4 sm:table-cell hidden">Nivel</th>
+            <th className="py-3 px-4 sm:table-cell hidden">Grado</th>
             <th className="py-3 px-4 pr-6 text-right">Estado</th>
           </tr>
         </thead>
@@ -53,10 +53,10 @@ const Report = () => {
                 <tr
                   className="text-left"
                 >
-                  <th className="py-3 px-4 font-medium">{student.nombre} {student.apellido}</th>
-                  <th className="py-3 px-4 font-medium">{student.dni}</th>
-                  <th className="py-3 px-4 font-medium">{student.nivel}</th>
-                  <th className="py-3 px-4 font-medium">{student.grado}</th>
+                  <th className="py-3 px-4 font-medium text-xs sm:text-sm">{student.nombre} {student.apellido}</th>
+                  <th className="py-3 px-4 font-medium text-xs sm:text-sm">{student.dni}</th>
+                  <th className="py-3 px-4 font-medium sm:table-cell hidden">{student.nivel}</th>
+                  <th className="py-3 px-4 font-medium sm:table-cell hidden">{student.grado}</th>
                   <th className="py-3 px-4 font-medium">{student.estado}</th>
                 </tr>
               </tbody>
