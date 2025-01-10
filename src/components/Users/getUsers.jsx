@@ -153,6 +153,30 @@ export const GetAssistances = () => {
     }));
   };
 
+  const getAttendanceByWeekday = () => {
+    const weekDays = [
+      { subject: 'Lu', asistencias: 0 },
+      { subject: 'Ma', asistencias: 0 },
+      { subject: 'Mie', asistencias: 0 },
+      { subject: 'Jue', asistencias: 0 },
+      { subject: 'Vi', asistencias: 0 },
+      { subject: 'Sa', asistencias: 0 }
+    ];
+
+    assistances.forEach(assistance => {
+      if (assistance.type === 'Entrada') {
+        const date = new Date(assistance.date);
+        const dayNum = date.getDay();
+        
+        if (dayNum >= 1 && dayNum <= 6) { // Lunes a Sábado
+          weekDays[dayNum - 1].asistencias++;
+        }
+      }
+    });
+
+    return weekDays;
+  };
+
   useEffect(() => {
     fetchAssistances();
   }, []);
@@ -163,6 +187,7 @@ export const GetAssistances = () => {
     error, 
     refetch: fetchAssistances,
     getAttendanceByDay,
-    getAttendanceByPeriod 
+    getAttendanceByPeriod,
+    getAttendanceByWeekday
   };
 };

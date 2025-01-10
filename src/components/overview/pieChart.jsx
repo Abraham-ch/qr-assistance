@@ -1,30 +1,33 @@
-import { PieChart, Pie, Cell } from 'recharts';
+import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from 'recharts';
 
 const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 }
+  { name: "Hombres", value: 400, fill: '#8884d8' },
+  { name: "Mujeres", value: 300, fill: '#83a6ed' }
 ];
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 export function PieChartComponent () {
   return (
-    <PieChart width={200} height={200} className='w-full h-full border-2'>
-      <Pie
-        data={data}
-        cx={95}
-        cy={95}
-        innerRadius={60}
-        outerRadius={80}
-        fill="#8884d8"
-        paddingAngle={5}
-        dataKey="value"
-      >
-        {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-        ))}
-      </Pie>
-    </PieChart>
+    <ResponsiveContainer className='col-span-3 row-span-5 pb-4 pt-6 text-sm rounded-md bg-white shadow-sm items-center justify-center'>
+      <h2 className="self-start text-start pb-1 px-8 text-xs font-semibold">Relacion estudiantes</h2>
+        <p className="text-start px-8 text-neutral-600 text-xs">
+          Relación entre estudiantes masculinos, femeninos matriculados.
+        </p>
+        <PieChart style={{ width: '100%', height: '100%' }} className='text-sm py-2' margin={{ top: 0, right: 0, left: 0, bottom: 60 }}>
+          <Pie
+            startAngle={90}
+            endAngle={450}
+            data={data}
+            cx="50%"
+            cy="50%"
+            innerRadius={40}
+            outerRadius={75}
+            fill="#8884d8"
+            dataKey="value"
+            label
+          />
+          <Legend iconSize={10} verticalAlign="bottom"/>
+        </PieChart>
+        <Tooltip />
+    </ResponsiveContainer>
   );
 };

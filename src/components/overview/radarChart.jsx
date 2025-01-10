@@ -1,52 +1,28 @@
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
-
-const data = [
-  {
-    subject: 'Lu',
-    A: 120,
-    B: 110,
-    fullMark: 150,
-  },
-  {
-    subject: 'Ma',
-    A: 98,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: 'Mie',
-    A: 86,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: 'Jue',
-    A: 99,
-    B: 100,
-    fullMark: 150,
-  },
-  {
-    subject: 'Vi',
-    A: 85,
-    B: 90,
-    fullMark: 150,
-  },
-  {
-    subject: 'Sa',
-    A: 65,
-    B: 85,
-    fullMark: 150,
-  },
-];
+import { Radar, RadarChart, PolarGrid, Tooltip, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
+import { GetAssistances } from '../Users/getUsers';
 
 export const RadarChartComponent = () => {
+  const { loading, error, getAttendanceByWeekday } = GetAssistances();
+  if (loading) return <div>Cargando...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  const weekData = getAttendanceByWeekday();
   return (
-      <ResponsiveContainer width="100%" height="100%">
-        <RadarChart width="80" height="80" cx="48%" cy="50%" outerRadius="70%" className='text-sm' data={data}>
+      <ResponsiveContainer className='flex flex-col col-span-3 row-span-5 bg-white shadow-sm pb-4 pt-10 text-sm rounded-md items-center justify-center'>
+        <h2 className="self-start text-start pb-1 px-8 text-xs font-semibold">Cantidad de asistencias</h2>
+        <p className="self-start text-start px-8 text-neutral-600 text-xs">
+          Número de asistencias semanalmente.
+        </p>
+        <RadarChart cx="48%" cy="50%" outerRadius="80%" className='text-sm' style={
+          {width: '90%', height: '90%', padding: '0px'}
+        } data={weekData}>
           <PolarGrid />
           <PolarAngleAxis dataKey="subject" />
           <PolarRadiusAxis />
-          <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+          <Tooltip 
+            formatter={(value) => [`${value} asistencias`]}
+          />
+          <Radar name="Asistencias" dataKey="asistencias" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
         </RadarChart>
       </ResponsiveContainer>
     );

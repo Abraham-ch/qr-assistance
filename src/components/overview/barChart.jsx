@@ -10,14 +10,18 @@ export const BarChartComponent = () => {
   const periodData = getAttendanceByPeriod();
 
   return (
-    <ResponsiveContainer width="100%" height={400}>
+    <ResponsiveContainer className='col-span-5 row-span-5 bg-white shadow-sm pb-6 pt-6 text-sm rounded-md' height="100%">
+      <h2 className="text-start pb-1 px-8 text-xs font-semibold">Cantidad de asistencias</h2>
+        <p className="text-start px-8 text-neutral-600 text-xs pb-2">
+          Número de asistencias registradas por periodo académico.
+        </p>
       <BarChart
         data={periodData}
         margin={{
-          top: 20,
+          top: 10,
           right: 30,
-          left: 20,
-          bottom: 70
+          left: 0,
+          bottom: 0
         }}
       >
         <XAxis 
