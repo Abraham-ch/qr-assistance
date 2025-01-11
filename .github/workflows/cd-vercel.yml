@@ -31,6 +31,6 @@ jobs:
 
     # Desplegar a Vercel
     - name: Deploy to Vercel (Preview)
-      run: npx vercel --token=$VERCEL_TOKEN --scope=<TU-ORGANIZACION> --prod-if-unlocked=false
+      run: npx vercel --token=$VERCEL_TOKEN --scope=$SCOP_NAME --prod-if-unlocked=false
       env:
         VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
