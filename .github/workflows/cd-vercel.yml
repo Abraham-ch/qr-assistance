@@ -1,6 +1,9 @@
 name: CD to Vercel on Pull Request
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -31,6 +34,6 @@ jobs:
 
     # Desplegar a Vercel
     - name: Deploy to Vercel (Preview)
-      run: npx vercel --token=$VERCEL_TOKEN --scope=$SCOP_NAME --prod-if-unlocked=false
+      run: npx vercel --token=$VERCEL_TOKEN --prod-if-unlocked=false
       env:
         VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
