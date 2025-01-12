@@ -108,7 +108,7 @@ const Dashboard = () => {
           </NavLink>
         </nav>
       </aside>
-      <main className="flex-1 p-6 bg-gray-100 h-dvh">
+      <main className="flex-1 p-6 bg-gray-100 h-dvh overflow-y-auto">
         <Outlet />
       </main>
     </div>
