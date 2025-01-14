@@ -108,7 +108,7 @@ export const GetAssistances = () => {
     
     for (let i = 0; i < 30; i++) {
       const date = new Date(firstDayOfMonth);
-      date.setDate(date.getDate() + i);
+      date.setDate(date.getDate() + i );
       const dateString = date.toISOString().split('T')[0];
       attendanceByDay[dateString] = 0;
     }

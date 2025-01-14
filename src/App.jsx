@@ -15,6 +15,7 @@ import Report from "./pages/dashboard/report";
 import Users from "./pages/dashboard/users";
 import Overview from "./pages/dashboard/overview";
 import QrScanner from "./pages/dashboard/qrScanner";
+import Tuitition from "./pages/dashboard/tuitition";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -64,6 +65,10 @@ function App() {
               <Route
                 path="users"
                 element={<Users />}
+              />
+              <Route
+                path="tuitition"
+                element={<Tuitition />}
               />
               </Route>
             </Routes>

@@ -10,7 +10,7 @@ export const BarChartComponent = () => {
   const periodData = getAttendanceByPeriod();
 
   return (
-    <ResponsiveContainer className='col-span-5 row-span-5 bg-white shadow-sm pb-6 pt-6 text-sm rounded-md' height="100%">
+    <ResponsiveContainer className='col-span-8 xl:col-span-6 row-span-4 xl:row-span-5 bg-white shadow-sm pb-6 pt-6 text-sm rounded-md w-fit' height="100%">
       <h2 className="text-start pb-1 px-8 text-xs font-semibold">Cantidad de asistencias</h2>
         <p className="text-start px-8 text-neutral-600 text-xs pb-2">
           Número de asistencias registradas por periodo académico.
