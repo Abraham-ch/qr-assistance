@@ -1,8 +1,8 @@
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { GetAssistances } from '../Users/getUsers';
+import { useAssistances } from '../Users/useAssistances';
 
 export const MainChart = () => {
-  const { loading, error, getAttendanceByDay } = GetAssistances();
+  const { loading, error, getAttendanceByDay } = useAssistances();
 
   if (loading) return <div>Cargando...</div>;
   if (error) return <div>Error: {error}</div>;

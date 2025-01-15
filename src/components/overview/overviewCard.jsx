@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
-import { GetUsers, GetAssistances } from '../Users/getUsers';
+import { useUsers } from '../Users/useUsers'; 
+import { useAssistances } from '../Users/useAssistances';
 import VanillaCalendar from '../ui/vanillaCalendar';
 
 const Card = ({ title, description }) => {
@@ -16,8 +17,8 @@ const Card = ({ title, description }) => {
 };
 
 export const OverviewCard = () => {
-  const { students, loading, error } = GetUsers();
-  const { assistances } = GetAssistances();
+  const { students, loading, error } = useUsers();
+  const { assistances } = useAssistances();
   const [today, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
 
   const handleDateSelect = useCallback((selectedDate) => {

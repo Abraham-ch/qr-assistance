@@ -1,8 +1,8 @@
 import { Radar, RadarChart, PolarGrid, Tooltip, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
-import { GetAssistances } from '../Users/getUsers';
+import { useAssistances } from '../Users/useAssistances';
 
 export const RadarChartComponent = () => {
-  const { loading, error, getAttendanceByWeekday } = GetAssistances();
+  const { loading, error, getAttendanceByWeekday } = useAssistances();
   if (loading) return <div>Cargando...</div>;
   if (error) return <div>Error: {error}</div>;
 

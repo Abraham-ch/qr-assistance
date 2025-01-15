@@ -1,8 +1,8 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { GetAssistances } from '../Users/getUsers';
+import { useAssistances } from '../Users/useAssistances';
 
 export const BarChartComponent = () => {
-  const { loading, error, getAttendanceByPeriod } = GetAssistances();
+  const { loading, error, getAttendanceByPeriod } = useAssistances();
 
   if (loading) return <div>Cargando...</div>;
   if (error) return <div>Error: {error}</div>;
