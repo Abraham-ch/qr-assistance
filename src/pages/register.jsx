@@ -39,12 +39,12 @@ function Register() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#FCCE02]">
+    <div className="flex items-center justify-center min-h-screen bg-[#FCCE02] xs:px-4 px-8">
       <div className="max-w-6xl mx-auto h-[calc(100vh-100px)] w-full flex rounded-lg shadow-sm items-center bg-white">
-        <div className="h-full w-full object-center overflow-hidden rounded-l-lg">
+        <div className="h-full w-full object-center overflow-hidden rounded-l-lg xs:block hidden">
           <img src="https://images.unsplash.com/photo-1602145095452-aba06946ed05?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Logo" className="object-cover h-full" />
         </div>
-      <div className="w-full max-w-md p-12 bg-white rounded-lg">
+      <div className="w-full max-w-md xs:p-12 p-6 bg-white rounded-lg">
         <form onSubmit={handleRegister}>
           <img src={Logo} alt="Logo" className="w-24 place-self-end top-0 pb-16" />
           <h3 className="text-2xl font-bold pb-4">Registro</h3>
@@ -54,6 +54,7 @@ function Register() {
               type="text"
               className="form-control px-3 py-3.5 border rounded-md"
               placeholder=""
+              autoComplete="name"
               onChange={(e) => setFname(e.target.value)}
               required
             />
@@ -65,6 +66,7 @@ function Register() {
               type="text"
               className="form-control px-3 py-3.5 border rounded-md"
               placeholder=""
+              autoComplete="family-name"
               onChange={(e) => setLname(e.target.value)}
             />
           </div>
@@ -75,6 +77,7 @@ function Register() {
               type="email"
               className="form-control px-3 py-3.5 border rounded-md"
               placeholder=""
+              autoComplete="email"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -86,6 +89,7 @@ function Register() {
               type="password"
               className="form-control px-3 py-3.5 border rounded-md"
               placeholder=""
+              autoComplete="password"
               onChange={(e) => setPassword(e.target.value)}
               required
             />

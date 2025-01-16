@@ -7,7 +7,7 @@ import { OverviewCard } from "src/components/overview/overviewCard";
 const Overview = () => {
 
   return (
-    <section className='max-w-6xl w-full h-full grid grid-cols-10 grid-rows-10 gap-x-6 gap-y-4 py-6 px-8'>
+    <section className='max-w-6xl mx-auto w-full h-[1800px] lg:h-[1000px] xl:h-full grid grid-cols-12 grid-rows-12 xl:grid-rows-10 gap-x-6 gap-y-4 py-0 xl:py-4'>
       <MainChart />
       <PieChartComponent />
       <BarChartComponent />

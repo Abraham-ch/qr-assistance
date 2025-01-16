@@ -1,76 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const GetUsers = () => {
-  const [students, setStudents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchStudents = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/estudiantes`);
-
-      const formattedStudents = response.data.data.map(student => ({
-        id: student.id_estudiante,
-        nombre: student.nombre,
-        apellido: student.apellido,
-        dni: student.dni,
-        nivel: student.nivel,
-        grado: student.grado,
-      }));
-
-      setStudents(formattedStudents);
-      setLoading(false);
-    } catch (err) {
-      console.error('Error al obtener los estudiantes:', err);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchStudents();
-  }, []);
-
-  return { students, loading, error, refetch: fetchStudents };
-};
-
-export const GetEnrollments = () => {
-  const [enrollments, setEnrollments] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchEnrollments = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/matriculas`);
-
-      const formattedEnrollments = response.data.data.map(enrollment => ({
-        id: enrollment.id_estudiante,
-        ciclo: enrollment.ciclo,
-        periodo: enrollment.periodo,
-        fechaInicial: enrollment.created_at,
-        fechaFinal: enrollment.end_date,
-      }));
-
-      setEnrollments(formattedEnrollments);
-      setLoading(false);
-    } catch (err) {
-      console.error('Error al obtener los alumnos:', err);
-      setError('Error al cargar los datos de los alumnos.');
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchEnrollments();
-  }, []);
-
-  return { enrollments, loading, error, refetch: fetchEnrollments };
-};
-
-export const GetAssistances = () => {
+export const useAssistances = () => {
   const [assistances, setAssistances] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -100,6 +31,43 @@ export const GetAssistances = () => {
     }
   };
 
+  const getAssistancesByUser = (studentId, cycle, period) => {
+    const userAssistances = assistances.filter(assistance => 
+      assistance.studentId === studentId &&
+      assistance.cycle === cycle &&
+      assistance.period === period
+    );
+
+    // Agrupar por fecha y tipo
+    const attendanceSummary = {};
+    
+    userAssistances.forEach(assistance => {
+      const dateKey = assistance.date;
+      if (!attendanceSummary[dateKey]) {
+        attendanceSummary[dateKey] = {
+          fecha: dateKey,
+          asistencia: 0,
+          tardanza: 0,
+          falta: 0
+        };
+      }
+
+      switch (assistance.type.toLowerCase()) {
+        case 'entrada':
+          attendanceSummary[dateKey].asistencia = 1;
+          break;
+        case 'tardanza':
+          attendanceSummary[dateKey].tardanza = 1;
+          break;
+        case 'falta':
+          attendanceSummary[dateKey].falta = 1;
+          break;
+      }
+    });
+
+    return Object.values(attendanceSummary);
+  };
+
   const getAttendanceByDay = () => {
     const attendanceByDay = {};
     
@@ -108,7 +76,7 @@ export const GetAssistances = () => {
     
     for (let i = 0; i < 30; i++) {
       const date = new Date(firstDayOfMonth);
-      date.setDate(date.getDate() + i);
+      date.setDate(date.getDate() + i );
       const dateString = date.toISOString().split('T')[0];
       attendanceByDay[dateString] = 0;
     }
@@ -188,6 +156,7 @@ export const GetAssistances = () => {
     refetch: fetchAssistances,
     getAttendanceByDay,
     getAttendanceByPeriod,
-    getAttendanceByWeekday
+    getAttendanceByWeekday,
+    getAssistancesByUser 
   };
 };

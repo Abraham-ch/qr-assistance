@@ -29,12 +29,12 @@ function Login() {
   };
 
   return (
-    <div className="flex h-screen items-center w-full justify-around bg-[#FCCE02]">
+    <div className="flex h-screen items-center w-full justify-around bg-[#FCCE02] xs:px-4 px-8">
       <div className="max-w-6xl mx-auto h-[calc(100vh-100px)] w-full flex rounded-lg shadow-sm items-center bg-white">
-        <div className="h-full w-full object-center overflow-hidden rounded-l-lg">
+        <div className="h-full w-full object-center overflow-hidden rounded-l-lg xs:block hidden">
           <img src="https://images.unsplash.com/photo-1550592704-6c76defa9985?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Logo" className="object-cover h-full" />
         </div>
-      <div className="w-full max-w-md space-y-8 bg-white rounded-lg py-8 px-12 h-full">
+      <div className="w-full max-w-md space-y-8 bg-white rounded-lg xs:px-12 px-6 py-8 h-full">
         <form onSubmit={handleSubmit}>
           <img src={Logo} alt="Logo" className="w-24 place-self-end top-0 pb-16" />
           <h3 className="text-2xl text-start font-bold pb-6">Login</h3>
@@ -44,6 +44,7 @@ function Login() {
               type="email"
               className="form-control px-3 py-3.5 border rounded-md"
               placeholder=""
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -55,6 +56,7 @@ function Login() {
               type="password"
               className="form-control px-3 py-3.5 border rounded-md"
               placeholder=""
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

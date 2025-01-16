@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { GetUsers, GetAssistances } from '../Users/getUsers';
+import { useState, useCallback } from 'react';
+import { useUsers } from '../Users/useUsers'; 
+import { useAssistances } from '../Users/useAssistances';
 import VanillaCalendar from '../ui/vanillaCalendar';
 
 const Card = ({ title, description }) => {
@@ -16,16 +17,17 @@ const Card = ({ title, description }) => {
 };
 
 export const OverviewCard = () => {
-  const { students, loading, error } = GetUsers();
-  const { assistances } = GetAssistances();
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+  const { students, loading, error } = useUsers();
+  const { assistances } = useAssistances();
+  const [today, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
 
-  const handleDateSelect = (date) => {
-    // Convertir la fecha seleccionada al formato ISO (YYYY-MM-DD)
-    const selectedDate = new Date(date);
-    const formattedDate = selectedDate.toISOString().split('T')[0];
-    setSelectedDate(formattedDate);
-  };
+  const handleDateSelect = useCallback((selectedDate) => {
+    if (selectedDate) {
+      setSelectedDate(selectedDate);
+      console.log("Fecha seleccionada:", selectedDate);
+    }
+  }, []);
+
 
   if (loading) return <div>Cargando...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -33,23 +35,19 @@ export const OverviewCard = () => {
   const totalStudents = students.length;
   const presentStudents = assistances.filter(
     attendance => 
-      attendance.date === selectedDate && 
+      attendance.date === today && 
       attendance.type === 'Entrada'
   ).length;
   const absentStudents = totalStudents - presentStudents;
 
   return (
-    <div className="col-start-9 row-start-1 col-span-2 row-span-10 grid grid-rows-12 gap-y-4">
-      <div className="row-span-6 rounded-md bg-white shadow-sm">
+    <div className="col-start-1 lg:col-start-9 xl:col-start-10 row-start-9 lg:row-start-1 col-span-full lg:col-span-4 xl:col-span-3 xl:row-start-1 row-span-4 lg:row-span-8 xl:row-span-10 grid grid-rows-12 gap-y-4 w-full">
+      <div className="row-span-6 w-full rounded-md bg-white shadow-sm">
         <VanillaCalendar 
           config={{
-            selectedTheme: 'light',
-            actions: {
-              clickDay: (e, dates) => {
-                handleDateSelect(dates[0]);
-              }
-            }
+            selectedTheme: 'light'
           }}
+          onDateSelect={handleDateSelect}
         />
       </div>
       <Card title="Total de Estudiantes" description={totalStudents} />

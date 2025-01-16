@@ -8,6 +8,7 @@ export default {
     extend: {
       screens: {
         print: { raw: "print" },
+        'xs': '480px',
       },
     },
   },
