@@ -15,7 +15,7 @@ export const MainChart = () => {
   }));
 
   return (
-    <ResponsiveContainer className='col-span-8 xl:col-span-6 row-span-4 xl:row-span-5 rounded-md bg-white shadow-sm pb-6 pt-6 text-sm w-fit'>
+    <ResponsiveContainer className='col-span-full lg:col-span-8 xl:col-span-6 row-span-2 lg:row-span-4 xl:row-span-5 rounded-md bg-white shadow-sm pb-6 pt-6 text-sm w-fit'>
       <h2 className="text-start pb-1 px-8 text-xs font-semibold">Cantidad de asistencias</h2>
         <p className="text-start px-8 text-neutral-600 text-xs pb-2">
           Número de asistencias registradas en el mes de Enero.

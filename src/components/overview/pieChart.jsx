@@ -7,7 +7,7 @@ const data = [
 
 export function PieChartComponent () {
   return (
-    <ResponsiveContainer className='row-start-9 xl:row-start-1 col-start-1 xl:col-start-7 col-span-6 xl:col-span-3 row-span-4 xl:row-span-5 pb-4 pt-6 text-sm rounded-md bg-white shadow-sm items-center justify-center w-fit flex xl:flex-col flex-row'>
+    <ResponsiveContainer className='row-start-5 lg:row-start-9 xl:row-start-1 col-start-1 xl:col-start-7 col-span-full lg:col-span-6 xl:col-span-3 row-span-2 lg:row-span-4 xl:row-span-5 pb-4 pt-6 text-sm rounded-md bg-white shadow-sm items-center justify-center w-fit flex xl:flex-col flex-row'>
         <span>
           <h2 className="self-start text-start pb-1 px-8 text-xs font-semibold">Relacion estudiantes</h2>
           <p className="text-start px-8 text-neutral-600 text-xs">

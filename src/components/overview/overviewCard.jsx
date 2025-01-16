@@ -41,7 +41,7 @@ export const OverviewCard = () => {
   const absentStudents = totalStudents - presentStudents;
 
   return (
-    <div className="col-start-9 xl:col-start-10 row-start-1 col-span-4 xl:col-span-3 xl:row-start-1 row-span-8 xl:row-span-10 grid grid-rows-12 gap-y-4 w-full">
+    <div className="col-start-1 lg:col-start-9 xl:col-start-10 row-start-9 lg:row-start-1 col-span-full lg:col-span-4 xl:col-span-3 xl:row-start-1 row-span-4 lg:row-span-8 xl:row-span-10 grid grid-rows-12 gap-y-4 w-full">
       <div className="row-span-6 w-full rounded-md bg-white shadow-sm">
         <VanillaCalendar 
           config={{

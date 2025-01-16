@@ -8,7 +8,7 @@ export const RadarChartComponent = () => {
 
   const weekData = getAttendanceByWeekday();
   return (
-      <ResponsiveContainer className='row-start-9 xl:row-start-6 col-start-7 xl:col-start-7 col-span-6 xl:col-span-3 row-span-4 xl:row-span-5 flex xl:flex-col flex-row bg-white shadow-sm xl:pt-6 text-sm rounded-md items-center justify-center w-fit'>
+      <ResponsiveContainer className='row-start-7 lg:row-start-9 xl:row-start-6 col-start-1 lg:col-start-7 xl:col-start-7 col-span-full lg:col-span-6 xl:col-span-3 row-span-2 lg:row-span-4 xl:row-span-5 flex xl:flex-col flex-row bg-white shadow-sm xl:pt-6 text-sm rounded-md items-center justify-center w-fit'>
         <span className=''>
           <h2 className="self-start text-start pb-1 pl-6 xl:pl-2 text-xs font-semibold">Cantidad de asistencias</h2>
           <p className="self-start text-start pl-6 xl:pl-2 text-neutral-600 text-xs">
