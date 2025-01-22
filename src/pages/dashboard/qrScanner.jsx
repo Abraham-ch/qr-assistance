@@ -1,6 +1,6 @@
 import { Html5QrcodeScanner, Html5QrcodeScanType } from "html5-qrcode";
 import { useEffect } from "react";
-import useAttendance from "components/Users/addUsers";
+import { useAttendance } from "components/Users/useAttendance";
 import { prepareAttendanceData } from "components/utils/attendanceUtils";
 
 const QrScanner = () => {

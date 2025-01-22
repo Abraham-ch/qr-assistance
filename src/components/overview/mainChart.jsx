@@ -1,10 +1,16 @@
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useAssistances } from '../Users/useAssistances';
+import BarLoader from '../loaders/barLoader';
 
 export const MainChart = () => {
   const { loading, error, getAttendanceByDay } = useAssistances();
 
-  if (loading) return <div>Cargando...</div>;
+  if (loading) 
+    return (
+      <div className='col-span-full lg:col-span-8 xl:col-span-6 row-span-2 lg:row-span-4 xl:row-span-5 rounded-md bg-white shadow-sm pb-6 pt-6 text-sm w-full'>
+        <BarLoader />
+      </div>
+      )
   if (error) return <div>Error: {error}</div>;
 
   const data = getAttendanceByDay().map(item => ({

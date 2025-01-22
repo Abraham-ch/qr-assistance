@@ -1,9 +1,16 @@
 import { Radar, RadarChart, PolarGrid, Tooltip, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 import { useAssistances } from '../Users/useAssistances';
+import BarLoader from '../loaders/barLoader';
 
 export const RadarChartComponent = () => {
   const { loading, error, getAttendanceByWeekday } = useAssistances();
-  if (loading) return <div>Cargando...</div>;
+  
+  if (loading) 
+    return (
+      <div className='row-start-7 lg:row-start-9 xl:row-start-6 col-start-1 lg:col-start-7 xl:col-start-7 col-span-full lg:col-span-6 xl:col-span-3 row-span-2 lg:row-span-4 xl:row-span-5 flex xl:flex-col flex-row bg-white shadow-sm xl:pt-6 text-sm rounded-md items-center justify-center w-fit' height="100%" width="100%">
+        <BarLoader />
+      </div>
+      )
   if (error) return <div>Error: {error}</div>;
 
   const weekData = getAttendanceByWeekday();

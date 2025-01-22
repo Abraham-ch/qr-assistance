@@ -10,7 +10,6 @@ function Users() {
     dni: '',
     nombre: '',
     apellido: '',
-    genero: '',
     telefono: '',
     direccion: '',
     nivel: '',
@@ -88,13 +87,12 @@ function Users() {
   const handleStudentSubmit = async (e) => {
     e.preventDefault();
     const result = await createStudent(studentData);
-    
+    console.log('Datos enviados:', studentData);
     if (result) {
       setStudentData({
         dni: '',
         nombre: '',
         apellido: '',
-        genero: '',
         telefono: '',
         direccion: '',
         nivel: '',
@@ -176,18 +174,6 @@ function Users() {
               required
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <select
-              name="genero"
-              value={studentData.genero}
-              onChange={handleStudentChange}
-              required
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">Seleccionar Género</option>
-              <option value="Masculino">Masculino</option>
-              <option value="Femenino">Femenino</option>
-              <option value="Otro">Otro</option>
-            </select>
             <input
               type="tel"
               name="telefono"

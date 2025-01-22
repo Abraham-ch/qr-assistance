@@ -1,10 +1,16 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useAssistances } from '../Users/useAssistances';
+import BarLoader from 'components/loaders/barLoader';
 
 export const BarChartComponent = () => {
   const { loading, error, getAttendanceByPeriod } = useAssistances();
 
-  if (loading) return <div>Cargando...</div>;
+  if (loading) 
+    return (
+      <div className='col-span-full lg:col-span-8 xl:col-span-6 row-span-2 lg:row-span-4 xl:row-span-5 bg-white shadow-sm pb-6 pt-6 text-sm rounded-md w-full flex-1'>
+        <BarLoader />
+      </div>
+      )
   if (error) return <div>Error: {error}</div>;
 
   const periodData = getAttendanceByPeriod();

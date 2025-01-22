@@ -8,13 +8,14 @@ export const AddUsers = () => {
 
   const createStudent = async (studentData) => {
     try {
-      setLoading(true);
+      setLoading(true); 
       setError(null);
       setSuccess(false);
 
       // Validar campos requeridos
-      const requiredFields = ['dni', 'nombre', 'apellido', 'genero', 'telefono', 'direccion', 'nivel', 'grado'];
+      const requiredFields = ['dni', 'nombre', 'apellido', 'telefono', 'direccion', 'nivel', 'grado'];
       const missingFields = requiredFields.filter(field => !studentData[field]);
+
 
       if (missingFields.length > 0) {
         throw new Error(`Campos requeridos faltantes: ${missingFields.join(', ')}`);
@@ -30,7 +31,7 @@ export const AddUsers = () => {
       return response.data;
     } catch (err) {
       console.error('Error al crear estudiante:', err);
-      setError(err.response?.data?.message || err.message || 'Error al crear estudiante');
+      console.error('Error al crear estudiante:', err.response?.data || err.message);
       setLoading(false);
       return null;
     }
@@ -127,26 +128,41 @@ export const EnrollUsers = () => {
       setSuccess(false);
 
       // Validar campos requeridos
-      const requiredFields = ['dni', 'ciclo', 'periodo'];
+      const requiredFields = ['dni', 'id_fechas_ciclo'];
       const missingFields = requiredFields.filter(field => !enrollmentData[field]);
 
       if (missingFields.length > 0) {
         throw new Error(`Campos requeridos faltantes: ${missingFields.join(', ')}`);
       }
 
+      // Validar formato del DNI
+      if (!/^\d{8}$/.test(enrollmentData.dni)) {
+        throw new Error('El DNI debe tener exactamente 8 dígitos');
+      }
+
+      // Validar formato del id_fechas_ciclo
+      if (!/^ciclo_(regular|verano|extraordinario)_\d{4}_\d{4}-[i|ii]$/i.test(enrollmentData.id_fechas_ciclo)) {
+        throw new Error('Formato de ciclo inválido');
+      }
+
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/matriculas`, 
-        enrollmentData
+        enrollmentData,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
       );
 
       setSuccess(true);
-      setLoading(false);
       return response.data;
     } catch (err) {
-      console.error('Error al crear matrícula:', err);
-      setError(err.response?.data?.message || err.message || 'Error al crear matrícula');
-      setLoading(false);
+      const errorMessage = err.response?.data?.message || err.message || 'Error al crear matrícula';
+      setError(errorMessage);
       return null;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -164,71 +180,3 @@ export const EnrollUsers = () => {
     resetStatus 
   };
 };
-
-const useAttendance = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
-  const [scanStatus, setScanStatus] = useState("");
-
-  const createAttendance = async (attendanceData) => {
-    try {
-      console.log('Datos enviados al backend:', {
-        url: `${import.meta.env.VITE_BACKEND_URL}/api/asistencias`,
-        data: attendanceData
-      });
-      
-      setLoading(true);
-      setError(null);
-      setSuccess(false);
-
-      const requiredFields = ['qr_content'];
-      const missingFields = requiredFields.filter(field => !attendanceData[field]);
-
-      if (missingFields.length > 0) {
-        throw new Error(`Campos requeridos faltantes: ${missingFields.join(', ')}`);
-      }
-
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/asistencias/qr/`,
-        attendanceData
-      );
-
-      console.log('Respuesta exitosa:', response.data);
-      setSuccess(true);
-      setScanStatus(`Asistencia registrada correctamente - ${attendanceData.tipo}`);
-      return response.data;
-    } catch (err) {
-      console.error('Error detallado:', {
-        message: err.message,
-        response: err.response?.data,
-        status: err.response?.status
-      });
-      
-      const errorMessage = err.response?.data?.message || err.message || 'Error al registrar la asistencia';
-      setError(errorMessage);
-      setScanStatus(errorMessage);
-      return null;
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const resetStatus = () => {
-    setLoading(false);
-    setError(null);
-    setSuccess(false);
-    setScanStatus("");
-  };
-
-  return {
-    createAttendance,
-    loading,
-    error,
-    success,
-    scanStatus,
-    resetStatus
-  };
-};
-
-export default useAttendance;

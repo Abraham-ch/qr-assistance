@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { useUsers } from '../Users/useUsers'; 
 import { useAssistances } from '../Users/useAssistances';
 import VanillaCalendar from '../ui/vanillaCalendar';
+import BarLoader from '../loaders/barLoader';
 
 const Card = ({ title, description }) => {
   return (
@@ -28,8 +29,12 @@ export const OverviewCard = () => {
     }
   }, []);
 
-
-  if (loading) return <div>Cargando...</div>;
+  if (loading) 
+    return (
+      <div className="col-start-1 lg:col-start-9 xl:col-start-10 row-start-9 lg:row-start-1 col-span-full lg:col-span-4 xl:col-span-3 xl:row-start-1 row-span-4 lg:row-span-8 xl:row-span-10 grid grid-rows-12 gap-y-4 w-full" height="100%" width="100%">
+        <BarLoader />
+      </div>
+      )
   if (error) return <div>Error: {error}</div>;
 
   const totalStudents = students.length;
