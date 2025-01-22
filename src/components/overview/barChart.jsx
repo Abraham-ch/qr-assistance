@@ -44,12 +44,14 @@ export const BarChartComponent = () => {
           }}
         />
         <Bar 
+          isAnimationActive={false}
           yAxisId="left"
           dataKey="asistencias" 
           name="Total Asistencias"
           fill="#8884d8" 
         />
-        <Bar 
+        <Bar
+          isAnimationActive={false}
           yAxisId="right"
           dataKey="estudiantes" 
           name="Total Estudiantes"

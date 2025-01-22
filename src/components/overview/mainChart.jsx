@@ -43,8 +43,9 @@ export const MainChart = () => {
         </defs>
         <XAxis dataKey="name" tickLine={true} range={[1,31]}/>
         <YAxis dataKey="asistencias" allowDecimals={false} tickLine={true} tickCount={4}/>
-        <Tooltip />
+        <Tooltip isAnimationActive={true} />
         <Area
+          isAnimationActive={false}
           type="monotone"
           dataKey="asistencias"
           stroke="#8884d8"
