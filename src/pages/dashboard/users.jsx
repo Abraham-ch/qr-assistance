@@ -14,6 +14,7 @@ function Users() {
     direccion: '',
     nivel: '',
     grado: '',
+    sexo: ''
   });
 
   // Estado para apoderados
@@ -96,7 +97,8 @@ function Users() {
         telefono: '',
         direccion: '',
         nivel: '',
-        grado: ''
+        grado: '',
+        sexo: ''
       });
     }
   };
@@ -174,6 +176,17 @@ function Users() {
               required
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            <select 
+              name="sexo"
+              value={studentData.sexo}
+              onChange={handleStudentChange}
+              required
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">Seleccionar Sexo</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+            </select>
             <input
               type="tel"
               name="telefono"

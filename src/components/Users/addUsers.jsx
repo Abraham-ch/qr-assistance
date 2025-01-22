@@ -13,7 +13,7 @@ export const AddUsers = () => {
       setSuccess(false);
 
       // Validar campos requeridos
-      const requiredFields = ['dni', 'nombre', 'apellido', 'telefono', 'direccion', 'nivel', 'grado'];
+      const requiredFields = ['dni', 'nombre', 'apellido', 'telefono', 'direccion', 'nivel', 'grado', 'sexo'];
       const missingFields = requiredFields.filter(field => !studentData[field]);
 
 
