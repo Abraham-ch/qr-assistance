@@ -31,8 +31,8 @@ function Users() {
   const [numStudents, setNumStudents] = useState(1);
 
   const gradosPorNivel = {
-    Primaria: ['1ro', '2do', '3ro', '4to', '5to'],
-    Secundaria: ['1ro', '2do', '3ro', '4to', '5to', '6to'],
+    Primaria: ['1ro', '2do', '3ro', '4to', '5to', '6to'],
+    Secundaria: ['1ro', '2do', '3ro', '4to', '5to'],
     Academia: ['Repaso', 'Semestral', 'Anual']
   };
 
