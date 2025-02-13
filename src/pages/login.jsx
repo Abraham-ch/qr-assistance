@@ -61,7 +61,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="py-2">
+          <div className="py-2 hidden">
             <p className="text-end text-xs text-gray-600">O puede{' '}<Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">registrarse</Link></p>
           </div>
           <div>
